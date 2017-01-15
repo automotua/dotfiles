@@ -1,33 +1,61 @@
 # Local/private config goes in the include
 [include]
         path = ~/.gitconfig.local
-[hub]
-        protocol = https
-[alias]
-        co = checkout
-        promote = !$ZSH/bin/git-promote
-        wtf     = !$ZSH/bin/git-wtf
-        rank-contributors = !$ZSH/bin/git-rank-contributors
-        count   = !git shortlog -sn
-[color]
-        diff = auto
-        status = auto
-        branch = auto
-        ui = true
+
 [core]
-        excludesfile = ~/.gitignore
-        editor = vim
-[apply]
-        whitespace = nowarn
-[mergetool]
-        keepBackup = false
-[difftool]
-        prompt = false
-[help]
-        autocorrect = 1
+    editor = vim
+    excludesfile = /Users/auta/.gitignore_global
+
+[color]
+    ui = auto
+
+[color "status"]
+    added = green bold
+    changed = red bold
+    untracked = red bold
+
+[color "branch"]
+    current = yellow bold
+    local = green bold
+    remote = cyan bold
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+
+[diff]
+    tool = kdiff3
+    guitool = kdiff3
+
 [push]
-        # See `git help config` (search for push.default)
-        # for more information on different options of the below setting.
-        #
-        # Setting to git 2.0 default to suppress warning message
-        default = simple
+    default = simple
+
+[merge]
+    tool = kdiff3
+
+[mergetool "kdiff3"]
+    trustExitCode = false
+
+[difftool "kdiff3"]
+    trustExitCode = false
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; SMARTSYNCHRONIZE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;[diff]
+    ;tool = smartsynchronize
+;[difftool "smartsynchronize"]
+    ;cmd = /Applications/SmartSynchronize.app/Contents/MacOS/SmartSynchronize "$LOCAL" "$REMOTE"
+;[difftool]
+    ;prompt = false
+;[merge]
+    ;tool = smartsynchronize
+;[mergetool "smartsynchronize"]
+    ;cmd = /Applications/SmartSynchronize.app/Contents/MacOS/SmartSynchronize "$LOCAL" "$REMOTE" "$MERGED"
+    ;trustExitCode = false
+
+[gc]
+    autoDetach = false
