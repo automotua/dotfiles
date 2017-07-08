@@ -98,5 +98,4 @@ cask "the-unarchiver"
 cask "virtualbox"
 cask "wireshark"
 cask "yourkit-java-profiler"
-cask "mactex"
 
