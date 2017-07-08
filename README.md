@@ -4,6 +4,7 @@ Leftovers:
 2. YouCompleteMe will still need to be manually compiled
 3. iTerm2's preference in GDrive
 4. Alfred's preference in GDrive
+5. Vim plugins install
 
 Applications not installed by brew cask:
 1. Desktop Cleaner
