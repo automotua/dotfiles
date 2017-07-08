@@ -1,4 +1,356 @@
+""""""""""
+" Vundle "
+""""""""""
+" be iMproved, required
+set nocompatible
+
+" required
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" plugins
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-fugitive'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-surround'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'chazy/cscope_maps'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'scrooloose/syntastic'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/a.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'mattn/emmet-vim'
+Plugin 'Valloric/MatchTagAlways'
+Plugin 'DoxygenToolkit.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'ervandew/supertab'
+Plugin 'SirVer/ultisnips'
+Plugin 'SearchComplete'
+Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'burntsushi/ripgrep'
+Plugin 'dyng/ctrlsf.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+""""""""""""
+" settings "
+""""""""""""
+" solves backspace not working problem
+set backspace=2
+
+" Set syntax highlighting on
 syntax on
 
-" Wrap gitcommit file types at the appropriate length
-filetype indent plugin on
+" Insert space when tab key pressed
+set expandtab
+
+" Change the number of spaces for indentation to 4
+set shiftwidth=2
+
+" Set number of spaces when tab key pressed to 4
+set tabstop=2
+
+" Set softtabstop to 4
+set softtabstop=2
+
+" Remove trailing whitespace
+fun! <SID>StripTrailingWhitespaces()
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
+endfun
+autocmd FileType c,cpp,java,php,ruby,python,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+" Show line number
+set nu
+
+" Use "," as leader key
+let mapleader = ","
+
+" <F2> to be pasting with format
+set pastetoggle=<F2>
+
+" Use Mac clipboard for copy
+set clipboard=unnamed
+
+" Make :Q also mean quit
+command! -bar -bang Q quit<bang>
+
+" Make :W also mean write
+command! -bar -bang W write<bang>
+
+" color scheme
+set background=dark
+
+" cursor line
+set cursorline
+
+" Enable Mac touchpad scrolling
+set mouse=a
+
+" Move lines up / down
+nnoremap <S-Down> :m .+1<CR>==
+nnoremap <S-Up> :m .-2<CR>==
+inoremap <S-Down> <Esc>:m .+1<CR>==gi
+inoremap <S-Up> <Esc>:m .-2<CR>==gi
+vnoremap <S-Down> :m '>+1<CR>gv=gv
+vnoremap <S-Up> :m '<-2<CR>gv=gv
+
+" Short cut for window switching
+map <c-h> <c-w>h
+map <c-l> <c-w>l
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-x> <c-w>c
+
+" Window resizing by +/- 5 rows/cols
+nnoremap 6 :vertical resize -10<cr>
+nnoremap 7 :resize +10<cr>
+nnoremap 8 :resize -10<cr>
+nnoremap 9 :vertical resize +10<cr>
+
+" Open new split window to right and bottom
+set splitbelow
+set splitright
+
+" Map ,'s original meaning to \:
+noremap \ ,
+
+" sets incremental search
+set incsearch
+
+" Highlight search
+set hlsearch
+
+" Smart case search
+set ignorecase
+set smartcase
+
+" Press space to stop hlsearch
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
+" k, j is also gk gj
+noremap  <buffer> <silent> k gk
+noremap  <buffer> <silent> j gj
+noremap  <buffer> <silent> 0 g0
+noremap  <buffer> <silent> $ g$
+
+" Simple folding based on syntax file, no time to learn all the tricks
+set foldmethod=syntax
+
+" open most folds by default
+set foldlevelstart=10
+
+" 10 nested fold max
+set foldnestmax=10
+
+" Make Y to yank to the end of line, not entire line
+:map Y y$
+
+" Save
+nmap <leader>s :w<cr>
+
+" Close current window
+nmap <leader>w :q<cr>
+
+" Close all windows
+nmap <leader>qq :qa<cr>
+
+" Too slow
+" Set the title of the Terminal to the currently open file
+"function! SetTerminalTitle()
+    "let titleString = expand('%:t')
+    "if len(titleString) > 0
+        "let &titlestring = expand('%:t')
+        "" this is the format iTerm2 expects when setting the window title
+        "let args = "\033];".&titlestring."\007"
+        "let cmd = 'silent !echo -e "'.args.'"'
+        "execute cmd
+        "redraw!
+    "endif
+"endfunction
+"autocmd BufEnter * call SetTerminalTitle()
+
+" Make * command stay at current word
+nmap <silent> * :let @/='\<'.expand('<cword>').'\>'<CR>
+
+"""""""""""""""""""
+" dyng/ctrlsf.vim "
+"""""""""""""""""""
+" Input :CtrlSF in command line, can start typing afterwards
+nmap <leader>ff <Plug>CtrlSFPrompt
+
+" Toggle search result window
+nnoremap <leader>ft :CtrlSFToggle<CR>
+
+" Input :CtrlSF foo in command line where foo is the current visual selected
+" word, waiting for further input.
+vmap <leader>ff <Plug>CtrlSFVwordPath
+
+" Don't close result window when some result file is opened
+let g:ctrlsf_auto_close = 0
+
+" Set default root to be project. CtrlSF locates project root by searching VCS
+" root (.git, .hg, .svn, etc.)
+let g:ctrlsf_default_root = 'project+fw'
+
+"""""""""""""""""""""""""""""""""
+" jeetsukumaran/vim-buffergator "
+"""""""""""""""""""""""""""""""""
+" Make buffer to be in foreground
+set hidden
+
+" Use the right side of the screen
+let g:buffergator_viewport_split_policy = 'B'
+
+" Cycle through MRU buffers in all windows
+let g:buffergator_mru_cycle_local_to_window = 0
+
+" I want my own keymappings...
+let g:buffergator_suppress_keymaps = 1
+
+" Go to the previous buffer open
+nmap <leader>a :BuffergatorMruCyclePrev<cr>
+
+" Go to the next buffer open
+nmap <leader>f :BuffergatorMruCycleNext<cr>
+
+" View the entire list of buffers open
+nmap <leader>bl :BuffergatorOpen<cr>
+
+" New empty buffer
+nmap <leader>n :enew<cr>
+
+" Close the buffer
+nmap <leader>q :bp <BAR> bd #<cr>
+
+""""""""""""""""""""""
+" ctrlpvim/ctrlp.vim "
+""""""""""""""""""""""
+" Maps ctrlp to Ctrl + P
+let g:ctrlp_map = '<c-p>'
+
+" Use mixed mode: files + MRU + current buffer
+let g:ctrlp_cmd = 'CtrlPMixed'
+
+" Search filename only
+let g:ctrlp_by_filename = 1
+
+" Use the nearest .git directory as the cwd, then
+let g:ctrlp_working_path_mode = 'ra'
+
+" Setup some default ignores
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
+
+" Include current file in
+let g:ctrlp_match_current_file = 1
+
+" Easy bindings for its various modes
+nmap <leader>bb :CtrlPBuffer<cr>
+nmap <leader>bm :CtrlPMixed<cr>
+nmap <leader>bs :CtrlPMRU<cr>
+
+""""""""""""""""""""""""""""""
+" bling/vim-airline settings "
+""""""""""""""""""""""""""""""
+" make vim-airline statusline to be always on
+set laststatus=2
+
+" Fancy arrow for vim-airline
+let g:airline_powerline_fonts = 1
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+"""""""""""""""""""""""""""
+" jistr/vim-nerdtree-tabs "
+"""""""""""""""""""""""""""
+" Open/close NERDTree Tabs with <leader>t
+nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
+" To have NERDTree always open on startup
+"let g:nerdtree_tabs_open_on_console_startup = 1
+
+"""""""""""""""""""""""""""""""""
+" scrooloose/syntastic settings "
+"""""""""""""""""""""""""""""""""
+let g:syntastic_error_symbol = '✘'
+let g:syntastic_warning_symbol = "▲"
+augroup mySyntastic
+  au!
+  au FileType tex let b:syntastic_mode = "passive"
+augroup END
+
+"""""""""""""""""""""""""""""""
+" xolox/vim-easytags settings "
+"""""""""""""""""""""""""""""""
+set cpo+=d
+" Where to look for tags files
+set tags=./.git/tags;,~/.vimtags
+" Sensible defaults
+let g:easytags_events = ['BufReadPost', 'BufWritePost']
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 2
+let g:easytags_resolve_links = 1
+let g:easytags_suppress_ctags_warning = 1
+
+""""""""""""""""""""""""""""""
+" majutsushi/tagbar settings "
+""""""""""""""""""""""""""""""
+" Open/close tagbar with <leader>b
+nmap <silent> <leader>b :TagbarToggle<CR>
+" Uncomment to open tagbar automatically whenever possible
+"autocmd BufEnter * nested :call tagbar#autoopen(0)"
+
+"""""""""""""""""""""""""""""""""""
+" airblade/vim-gitgutter settings "
+"""""""""""""""""""""""""""""""""""
+" Required after having changed the colorscheme
+hi clear SignColumn
+" In vim-airline, only display "hunks" if the diff is non-zero
+let g:airline#extensions#hunks#non_zero_only = 1
+
+""""""""""""""""""""""""""""
+" You-Complete-Me settings "
+""""""""""""""""""""""""""""
+" you complete me
+" global ycm extra conf for c family
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+
+" don't use ycm's syntax checking, I have syntactic
+"let g:loaded_youcompleteme = 1
+let g:ycm_show_diagnostics_ui = 0
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+

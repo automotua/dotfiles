@@ -1,0 +1,11 @@
+# automotua account
+Host github.com
+  HostName github.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_rsa
+
+# no need to type passphrase for ssh every time
+# this must be at the bottom
+Host *
+  UseKeychain yes
+

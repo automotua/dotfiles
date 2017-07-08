@@ -1,3 +1,12 @@
+# My dotfiles, inspired by holman does dotfiles
+Leftovers:
+1. AWS credentials (i.e. $HOME/.aws/) in GDrive
+2. YouCompleteMe will still need to be manually compiled
+3. iTerm2's preference in GDrive
+4. Alfred's preference in GDrive
+
+The original README:
+
 # holman does dotfiles
 
 Your dotfiles are how you personalize your system. These are mine.

@@ -1,41 +1,120 @@
-# shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/.dotfiles
+###################
+# oh-my-zsh stuff #
+###################
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/auta/.oh-my-zsh
 
-# your project folder that we can `c [tab]` to
-export PROJECTS=~/Code
+# set theme
+ZSH_THEME="bullet-train"
 
-# Stash your environment variables in ~/.localrc. This means they'll stay out
-# of your main dotfiles repository (which may be public, like this one), but
-# you'll have access to them in your scripts.
-if [[ -a ~/.localrc ]]
-then
-  source ~/.localrc
-fi
+# oh-my-zsh plugins
+plugins=(git pip zsh-completions osx z docker vault)
 
-# all of our zsh files
-typeset -U config_files
-config_files=($ZSH/**/*.zsh)
+# Uncomment to XXX
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-# load the path files
-for file in ${(M)config_files:#*/path.zsh}
-do
-  source $file
-done
+# initializes oh-my-zsh
+source $ZSH/oh-my-zsh.sh
 
-# load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
-do
-  source $file
-done
+# set default editor
+export EDITOR='vim'
 
-# initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit
+####################
+# Google Cloud SDK #
+####################
+# export to PATH
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
 
-# load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.zsh}
-do
-  source $file
-done
+# zsh completions
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 
-unset config_files
+##########
+# docker #
+##########
+# aliases and functions
+# remove all containers, including their volumes
+dkrmp() { docker rm -v $(docker ps -q -a); }
+
+# remove all images
+dkrmi() { docker rmi $(docker images -q); }
+
+# remove all images and containers, i.e. both dkrmp and dkrmi
+dkrma() { dkrmp; dkrmi; }
+
+###########
+# aliases #
+###########
+# alias to have color in grep result
+alias grep="grep --color=auto"
+
+# alias for common typos
+alias sl="ls"
+alias gti="git"
+
+# alias for tar, untar, targz, untargz
+alias mktar="tar -cvf"
+alias untar="tar -xvf"
+alias mktargz="tar -cvzf"
+alias untargz="tar -zxvf"
+
+# alias to let vi be vim
+alias vi="vim"
+
+# alias to shorten "python"
+alias py="python"
+
+# alias to virtualenv's environment creation, activation and deactivation
+alias vv="virtualenv venv"
+alias va="source venv/bin/activate"
+alias vd="deactivate"
+
+########
+# misc #
+########
+# export arc to path
+export PATH="$PATH:/Users/auta/Gdrive/bins/arcanist/bin/"
+
+# killing Red Hot Pot timer coz it's crashing too often, TODO: tell their developer
+kored() {
+  kill $(ps aux | grep '[/App]lications/Red Hot Timer.app/Contents/MacOS/Red Hot Timer' | awk '{print $2}')
+}
+
+# for bullet-train zsh theme
+BULLETTRAIN_PROMPT_CHAR=➜
+
+# enable syntax highlighting
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# set JAVA_HOME
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+
+export NVM_DIR="/Users/auta/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
