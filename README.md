@@ -5,6 +5,11 @@ Leftovers:
 3. iTerm2's preference in GDrive
 4. Alfred's preference in GDrive
 
+Applications not installed by brew cask:
+1. Desktop Cleaner
+2. Xcode
+3. WeChat
+
 The original README:
 
 # holman does dotfiles

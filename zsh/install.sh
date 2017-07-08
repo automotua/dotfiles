@@ -20,12 +20,16 @@ fi
 # bullet-train zsh theme requirement: Patched fonts for Powerline users #
 #########################################################################
 # https://github.com/powerline/fonts
-cd /tmp
-git clone https://github.com/powerline/fonts.git
-cd fonts
-./install.sh
-cd ..
-rm -rf fonts
+# currently install fonts only at 1st time, tested by existence of .oh-my-zsh folder as above
+if ! [ -e $HOME/.oh-my-zsh ]
+then
+  cd /tmp
+  git clone https://github.com/powerline/fonts.git
+  cd fonts
+  ./install.sh
+  cd ..
+  rm -rf fonts
+fi
 
 exit 0
 

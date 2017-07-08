@@ -3,8 +3,11 @@
 ##################
 # Install Vundle #
 ##################
-mkdir -p $HOME/.vim/bundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+if ! [ -e $HOME/.vim/bundle/Vundle.vim ]
+then
+  mkdir -p $HOME/.vim/bundle
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
 
 ##############################
 # YouCompleteMe requirements #
