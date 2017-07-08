@@ -12,7 +12,10 @@ fi
 ##############################
 # YouCompleteMe requirements #
 ##############################
-ln -s /usr/local/bin/mvim /usr/local/bin/vim
+if ! [ -e /usr/local/bin/vim ]
+then
+  ln -s /usr/local/bin/mvim /usr/local/bin/vim
+fi
 
 exit 0
 
