@@ -6,8 +6,9 @@
 # to make sure you're on the latest and greatest.
 export DOTFILES=$HOME/.dotfiles
 
+# Don't set macOS default for now, not really needed
 # Set macOS defaults
-$DOTFILES/macos/set-defaults.sh
+#$DOTFILES/macos/set-defaults.sh
 
 # Install homebrew
 $DOTFILES/homebrew/install.sh 2>&1
