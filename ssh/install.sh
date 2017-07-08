@@ -9,7 +9,7 @@ then
   cp config $HOME/.ssh/config
 else
   echo ""
-  echo "~/.ssh/config file already exists. Make sure the config files are properly merged. \n"
+  echo "~/.ssh/config file already exists. Make sure the config files are properly merged."
 fi
 
 exit 0
