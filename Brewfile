@@ -5,7 +5,6 @@ tap "homebrew/php"
 tap "homebrew/services"
 
 brew "ack"
-brew "android-platform-tools"
 brew "bash-completion"
 brew "binutils"
 brew "cmake"
