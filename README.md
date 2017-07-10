@@ -2,9 +2,10 @@
 Leftovers:
 1. AWS credentials (i.e. $HOME/.aws/) in GDrive
 2. YouCompleteMe will still need to be manually compiled
-3. iTerm2's preference in GDrive
-4. Alfred's preference in GDrive
-5. Vim plugins install
+3. Tern is used for JS completion. But after installing Tern's Vundle plugin, make sure to run `npm install` in `.vim/bundle/tern_for_vim/` directory
+4. iTerm2's preference in GDrive
+5. Alfred's preference in GDrive
+6. Vim plugins install
 
 Applications not installed by brew cask:
 1. Desktop Cleaner
