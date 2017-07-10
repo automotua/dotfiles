@@ -201,6 +201,10 @@ set completeopt-=preview
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
 highlight PmenuSel ctermfg=0 ctermbg=7 guifg=#000000 guibg=#000007
 
+" When Pmenu is shown, remap Ctrl-N and Ctrl-P to arrow keys to prevent flashing
+inoremap <expr> <C-N> pumvisible() ? "<Down>" : "<C-N>"
+inoremap <expr> <C-P> pumvisible() ? "<Up>" : "<C-P>"
+
 """""""""""""""""""
 " dyng/ctrlsf.vim "
 """""""""""""""""""
