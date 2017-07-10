@@ -165,7 +165,7 @@ set foldlevelstart=10
 set foldnestmax=10
 
 " Make Y to yank to the end of line, not entire line
-:map Y y$
+map Y y$
 
 " Save
 nmap <leader>s :w<cr>
@@ -193,6 +193,9 @@ nmap <leader>qq :qa<cr>
 
 " Make * command stay at current word
 nmap <silent> * :let @/='\<'.expand('<cword>').'\>'<CR>
+
+" Don't open preview window for auto-complete
+set completeopt-=preview
 
 """""""""""""""""""
 " dyng/ctrlsf.vim "
