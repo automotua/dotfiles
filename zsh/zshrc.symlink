@@ -91,9 +91,6 @@ alias cpd="cp -R "
 ########
 # misc #
 ########
-# export arc to path
-export PATH="$PATH:/Users/auta/Gdrive/bins/arcanist/bin/"
-
 # killing Red Hot Pot timer coz it's crashing too often, TODO: tell their developer
 kored() {
   kill $(ps aux | grep '[/App]lications/Red Hot Timer.app/Contents/MacOS/Red Hot Timer' | awk '{print $2}')
@@ -102,13 +99,6 @@ kored() {
 # for bullet-train zsh theme
 BULLETTRAIN_PROMPT_CHAR=➜
 
-# enable syntax highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # set JAVA_HOME
 export JAVA_HOME=$(/usr/libexec/java_home)
-
-
-export NVM_DIR="/Users/auta/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
