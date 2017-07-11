@@ -11,10 +11,11 @@ then
   echo "Installing oh-my-zsh."
   cd $HOME
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  # symbolic link the custom folder
-  rm -rf $HOME/.oh-my-zsh/custom
-  ln -s $DOTFILES_ROOT/zsh/custom $HOME/.oh-my-zsh/custom
 fi
+
+# copy custom folder's plugins and themes
+cp -R $DOTFILES_ROOT/zsh/custom/themes $HOME/.oh-my-zsh/custom/themes
+cp -R $DOTFILES_ROOT/zsh/custom/plugins/zsh-syntax-highlighting $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 #########################################################################
 # bullet-train zsh theme requirement: Patched fonts for Powerline users #
