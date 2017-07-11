@@ -14,6 +14,7 @@ then
 fi
 
 # copy custom folder's plugins and themes
+rm -rf $HOME/.oh-my-zsh/custom/themes $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 cp -R $DOTFILES_ROOT/zsh/custom/themes $HOME/.oh-my-zsh/custom/themes
 cp -R $DOTFILES_ROOT/zsh/custom/plugins/zsh-syntax-highlighting $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
