@@ -45,15 +45,6 @@ source $ZSH/oh-my-zsh.sh
 # set default editor
 export EDITOR='vim'
 
-####################
-# Google Cloud SDK #
-####################
-# export to PATH
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-
-# zsh completions
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-
 ##########
 # docker #
 ##########
@@ -93,6 +84,9 @@ alias py="python"
 alias vv="virtualenv venv"
 alias va="source venv/bin/activate"
 alias vd="deactivate"
+
+# alias to copy directory recursively
+alias cpd="cp -R "
 
 ########
 # misc #
