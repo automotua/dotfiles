@@ -18,9 +18,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 " plugins
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-fugitive'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-surround'
@@ -28,12 +25,8 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'chazy/cscope_maps'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'scrooloose/syntastic'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
-Plugin 'majutsushi/tagbar'
-Plugin 'vim-scripts/a.vim'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'mattn/emmet-vim'
 Plugin 'Valloric/MatchTagAlways'
 Plugin 'DoxygenToolkit.vim'
@@ -42,10 +35,18 @@ Plugin 'ternjs/tern_for_vim'
 Plugin 'ervandew/supertab'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'SearchComplete'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'burntsushi/ripgrep'
 Plugin 'dyng/ctrlsf.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'w0rp/ale'
+Plugin 'junegunn/fzf.vim'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'galooshi/vim-import-js'
+Plugin 'jamshedvesuna/vim-markdown-preview'
+Plugin 'itchyny/lightline.vim'
+Plugin 'mgee/lightline-bufferline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -63,13 +64,13 @@ syntax on
 " Insert space when tab key pressed
 set expandtab
 
-" Change the number of spaces for indentation to 4
+" Change the number of spaces for indentation to 2
 set shiftwidth=2
 
-" Set number of spaces when tab key pressed to 4
+" Set number of spaces when tab key pressed to 2
 set tabstop=2
 
-" Set softtabstop to 4
+" Set softtabstop to 2
 set softtabstop=2
 
 " Remove trailing whitespace
@@ -79,13 +80,13 @@ fun! <SID>StripTrailingWhitespaces()
   %s/\s\+$//e
   call cursor(l, c)
 endfun
-autocmd FileType c,cpp,java,php,ruby,python,vim autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType c,cpp,java,php,ruby,python,vim,js autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " Show line number
 set nu
 
-" Use "," as leader key
-let mapleader = ","
+" Use <Space> as leader key
+let mapleader = " "
 
 " <F2> to be pasting with format
 set pastetoggle=<F2>
@@ -105,6 +106,9 @@ set background=dark
 " cursor line
 set cursorline
 
+" highlight current column toggle
+nnoremap <leader>c :set cursorcolumn!<cr>
+
 " Enable Mac touchpad scrolling
 set mouse=a
 
@@ -121,13 +125,12 @@ map <c-h> <c-w>h
 map <c-l> <c-w>l
 map <c-j> <c-w>j
 map <c-k> <c-w>k
-map <c-x> <c-w>c
 
 " Window resizing by +/- 5 rows/cols
-nnoremap 6 :vertical resize -10<cr>
-nnoremap 7 :resize +10<cr>
-nnoremap 8 :resize -10<cr>
-nnoremap 9 :vertical resize +10<cr>
+nnoremap <F6> :vertical resize -10<cr>
+nnoremap <F7> :resize +10<cr>
+nnoremap <F8> :resize -10<cr>
+nnoremap <F9> :vertical resize +10<cr>
 
 " Open new split window to right and bottom
 set splitbelow
@@ -146,8 +149,8 @@ set hlsearch
 set ignorecase
 set smartcase
 
-" Press space to stop hlsearch
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+" Press comma to stop hlsearch
+nnoremap <silent> , :nohlsearch<Bar>:echo<CR>
 
 " k, j is also gk gj
 noremap  <buffer> <silent> k gk
@@ -176,23 +179,8 @@ nmap <leader>w :q<cr>
 " Close all windows
 nmap <leader>qq :qa<cr>
 
-" Too slow
-" Set the title of the Terminal to the currently open file
-"function! SetTerminalTitle()
-    "let titleString = expand('%:t')
-    "if len(titleString) > 0
-        "let &titlestring = expand('%:t')
-        "" this is the format iTerm2 expects when setting the window title
-        "let args = "\033];".&titlestring."\007"
-        "let cmd = 'silent !echo -e "'.args.'"'
-        "execute cmd
-        "redraw!
-    "endif
-"endfunction
-"autocmd BufEnter * call SetTerminalTitle()
-
 " Make * command stay at current word
-nmap <silent> * :let @/='\<'.expand('<cword>').'\>'<CR>
+nnoremap * *N
 
 " Don't open preview window for auto-complete
 set completeopt-=preview
@@ -204,6 +192,28 @@ highlight PmenuSel ctermfg=0 ctermbg=7 guifg=#000000 guibg=#000007
 " When Pmenu is shown, remap Ctrl-N and Ctrl-P to arrow keys to prevent flashing
 inoremap <expr> <C-N> pumvisible() ? "<Down>" : "<C-N>"
 inoremap <expr> <C-P> pumvisible() ? "<Up>" : "<C-P>"
+
+" Let's live in a world with no swap files
+set noswapfile
+
+" Set column width 80
+set textwidth=80
+
+" Notify column width limit
+set colorcolumn=+1        " highlight column after 'textwidth'
+highlight ColorColumn ctermbg=black guibg=black
+
+" Enable project-specific .vimrc. See 'set secure' at the end
+set exrc
+
+" Always open help in bottom right window
+nnoremap <leader>h :vert help<Space>
+
+" Search whole word by pressing ?
+nmap ? /\<\><Left><Left>
+
+" Close all other windows, leaving only current window open
+nmap <leader>o :only<cr>
 
 """""""""""""""""""
 " dyng/ctrlsf.vim "
@@ -218,12 +228,18 @@ nnoremap <leader>ft :CtrlSFToggle<CR>
 " word, waiting for further input.
 vmap <leader>ff <Plug>CtrlSFVwordPath
 
+" Use rg as backend, see comparison: https://blog.burntsushi.net/ripgrep/
+let g:ctrlsf_ackprg = '/usr/local/bin/rg'
+
 " Don't close result window when some result file is opened
 let g:ctrlsf_auto_close = 0
 
 " Set default root to be project. CtrlSF locates project root by searching VCS
 " root (.git, .hg, .svn, etc.)
 let g:ctrlsf_default_root = 'project+fw'
+
+" Set window size to be 30%
+let g:ctrlsf_winsize = '30%'
 
 """""""""""""""""""""""""""""""""
 " jeetsukumaran/vim-buffergator "
@@ -234,20 +250,26 @@ set hidden
 " Use the right side of the screen
 let g:buffergator_viewport_split_policy = 'B'
 
-" Cycle through MRU buffers in all windows
-let g:buffergator_mru_cycle_local_to_window = 0
-
 " I want my own keymappings...
 let g:buffergator_suppress_keymaps = 1
 
-" Go to the previous buffer open
+" Limit buffer list window size to be 10 rows
+let g:buffergator_split_size = 10
+
+" Sort the buffers by MRU
+let g:buffergator_sort_regime = 'mru'
+
+" Cycle buffers globally, not w.r.t. window
+let g:buffergator_mru_cycle_local_to_window = 0
+
+" Go to the previous buffer displayed at the top
 nmap <leader>a :BuffergatorMruCyclePrev<cr>
 
-" Go to the next buffer open
+" Go to the next buffer displayed at the top
 nmap <leader>f :BuffergatorMruCycleNext<cr>
 
 " View the entire list of buffers open
-nmap <leader>bl :BuffergatorOpen<cr>
+nmap <leader>g :BuffergatorToggle<cr>
 
 " New empty buffer
 nmap <leader>n :enew<cr>
@@ -255,67 +277,35 @@ nmap <leader>n :enew<cr>
 " Close the buffer
 nmap <leader>q :bp <BAR> bd #<cr>
 
-""""""""""""""""""""""
-" ctrlpvim/ctrlp.vim "
-""""""""""""""""""""""
-" Maps ctrlp to Ctrl + P
-let g:ctrlp_map = '<c-p>'
+"""""""""""""""""""""""
+"" ctrlpvim/ctrlp.vim "
+"""""""""""""""""""""""
+"" Maps ctrlp to Ctrl + P
+"let g:ctrlp_map = '<c-p>'
 
-" Use mixed mode: files + MRU + current buffer
-let g:ctrlp_cmd = 'CtrlPMixed'
+"" Use mixed mode: files + MRU + current buffer
+"let g:ctrlp_cmd = 'CtrlPMixed'
 
-" Search filename only
-let g:ctrlp_by_filename = 1
+"" Search filename only
+"let g:ctrlp_by_filename = 1
 
-" Use the nearest .git directory as the cwd, then
-let g:ctrlp_working_path_mode = 'ra'
+"" Use the nearest .git directory as the cwd, then
+"let g:ctrlp_working_path_mode = 'ra'
 
-" Setup some default ignores
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
-  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
-\}
+"" Setup some default ignores
+"let g:ctrlp_custom_ignore = {
+  "\ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  "\ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+"\}
 
-" Include current file in
-let g:ctrlp_match_current_file = 1
-
-" Easy bindings for its various modes
-nmap <leader>bb :CtrlPBuffer<cr>
-nmap <leader>bm :CtrlPMixed<cr>
-nmap <leader>bs :CtrlPMRU<cr>
-
-""""""""""""""""""""""""""""""
-" bling/vim-airline settings "
-""""""""""""""""""""""""""""""
-" make vim-airline statusline to be always on
-set laststatus=2
-
-" Fancy arrow for vim-airline
-let g:airline_powerline_fonts = 1
-
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
+"" Include current file in
+"let g:ctrlp_match_current_file = 1
 
 """""""""""""""""""""""""""
 " jistr/vim-nerdtree-tabs "
 """""""""""""""""""""""""""
 " Open/close NERDTree Tabs with <leader>t
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
-" To have NERDTree always open on startup
-"let g:nerdtree_tabs_open_on_console_startup = 1
-
-"""""""""""""""""""""""""""""""""
-" scrooloose/syntastic settings "
-"""""""""""""""""""""""""""""""""
-let g:syntastic_error_symbol = '✘'
-let g:syntastic_warning_symbol = "▲"
-augroup mySyntastic
-  au!
-  au FileType tex let b:syntastic_mode = "passive"
-augroup END
 
 """""""""""""""""""""""""""""""
 " xolox/vim-easytags settings "
@@ -330,31 +320,16 @@ let g:easytags_dynamic_files = 2
 let g:easytags_resolve_links = 1
 let g:easytags_suppress_ctags_warning = 1
 
-""""""""""""""""""""""""""""""
-" majutsushi/tagbar settings "
-""""""""""""""""""""""""""""""
-" Open/close tagbar with <leader>b
-nmap <silent> <leader>b :TagbarToggle<CR>
-" Uncomment to open tagbar automatically whenever possible
-"autocmd BufEnter * nested :call tagbar#autoopen(0)"
-
-"""""""""""""""""""""""""""""""""""
-" airblade/vim-gitgutter settings "
-"""""""""""""""""""""""""""""""""""
-" Required after having changed the colorscheme
-hi clear SignColumn
-" In vim-airline, only display "hunks" if the diff is non-zero
-let g:airline#extensions#hunks#non_zero_only = 1
-
 """"""""""""""""""""""""""""
 " You-Complete-Me settings "
 """"""""""""""""""""""""""""
-" you complete me
+" Go to definition or declaration if definition can't be found
+nnoremap <silent> <leader>b :YcmCompleter GoTo<cr>
+
 " global ycm extra conf for c family
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 " don't use ycm's syntax checking, I have syntactic
-"let g:loaded_youcompleteme = 1
 let g:ycm_show_diagnostics_ui = 0
 
 " make YCM compatible with UltiSnips (using supertab)
@@ -367,3 +342,78 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
+"""""""""""""""""""
+" mattn/emmet-vim "
+"""""""""""""""""""
+" make emmet compatible with jsx (expands to className, etc.)
+let g:user_emmet_settings = {
+\ 'javascript.jsx' : {
+  \ 'extends' : 'jsx',
+  \},
+\}
+
+""""""""""""
+" w0rp/ale "
+""""""""""""
+" Less aggressive than the default
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
+
+" Less distracting when opening a new file
+let g:ale_lint_on_enter = 0
+
+""""""""""""""""""""
+" junegunn/fzf.vim "
+""""""""""""""""""""
+" put fzf in runtime path
+set rtp+=/usr/local/opt/fzf
+
+" still Ctrl-P, but it's fzf underneath
+nnoremap <C-P> :Files<cr>
+
+" / search history
+nnoremap <C-R>/ :History/<cr>
+
+" : command history
+nnoremap <C-R>: :History:<cr>
+
+"""""""""""""""""""""""""""""""""""""
+" jeffkreeftmeijer/vim-numbertoggle "
+"""""""""""""""""""""""""""""""""""""
+" try out this plugin for hybrid number toggle
+set number relativenumber
+
+""""""""""""""""""""""""""""""""""""""
+" jamshedvesuna/vim-markdown-preview "
+""""""""""""""""""""""""""""""""""""""
+" change hotkey to avoid conflict
+let vim_markdown_preview_hotkey = '<C-M>'
+
+"""""""""""""""""""""""""
+" itchyny/lightline.vim "
+"""""""""""""""""""""""""
+" make lightline statusline to be always on
+set laststatus=2
+
+"""""""""""""""""""""""""""""
+" mgee/lightline-bufferline "
+"""""""""""""""""""""""""""""
+" always show tabline
+set showtabline=2
+
+" following sample configs
+let g:lightline#bufferline#show_number  = 1
+let g:lightline#bufferline#shorten_path = 1
+let g:lightline#bufferline#unnamed      = '[No Name]'
+let g:lightline                  = {}
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
+
+""""""""""""""""""""""""
+" Has to be at the end "
+""""""""""""""""""""""""
+" Due to project-specific .vimrc, need to enable secure mode to prevent
+" autocmd, shell and write commands from being run inside project-specific
+" .vimrc files unless they’re owned by me
+set secure

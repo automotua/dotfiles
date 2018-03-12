@@ -8,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="bullet-train"
 
 # oh-my-zsh plugins
-plugins=(git pip zsh-completions osx z docker zsh-syntax-highlighting)
+plugins=(git pip zsh-completions osx docker fasd zsh-syntax-highlighting)
 
 # Uncomment to XXX
 # Uncomment the following line to use case-sensitive completion.
@@ -58,6 +58,29 @@ dkrmi() { docker rmi $(docker images -q); }
 # remove all images and containers, i.e. both dkrmp and dkrmi
 dkrma() { dkrmp; dkrmi; }
 
+############
+# openssl #
+############
+# use homebrew openssl instead of Apple's builtin one which is old
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+##########
+# sqlite #
+##########
+# use homebrew sqlite instead of Apple's builtin one which is old
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
+#######
+# fzf #
+#######
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
+
+########
+# fasd #
+########
+# init fasd
+source '/usr/local/bin/fasd'
+
 ###########
 # aliases #
 ###########
@@ -105,3 +128,9 @@ export TERM="xterm-256color"
 # set JAVA_HOME
 export JAVA_HOME=$(/usr/libexec/java_home)
 
+# ShadowSocks, uncomment them in China only
+# use privoxy to convert ShadowSocks socks5 protocol to http to be used in terminal
+#export http_proxy=http://127.0.0.1:1087
+#export https_proxy=http://127.0.0.1:1087
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
