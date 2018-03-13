@@ -1,5 +1,30 @@
 # My dotfiles, inspired by holman does dotfiles
-Leftovers:
+
+## Summary of components
+
+General scripts that can be run independently:
+
+- **bin/dot**: Script that'll install Homebrew itself and run all the install.sh
+  scripts in other folders
+- **script/install**: Does 2 things:
+  1. Install all Homebrew-managed programs / binaries listed in
+  the `Brewfile` through command `brew bundle`
+  2. Run all the `install.sh` files in each topic folder to install other
+   components
+- **script/link**: Link all the configuration dotfiles (`.vimrc` etc.) into `$HOME` folder
+- **script/bootstrap**: Does 3 things:
+  1. Set up `gitconfig`, git username etc.
+  2. Run **script/link**
+  3. Run **bin/dot**
+
+Internal scripts, generally shouldn't be run by itself:
+
+- **topic/install.sh**: Install script for that topic / program. E.g.
+  **homebrew/install.sh**: will install Homebrew itself, **zsh/install.sh**
+installs oh-my-zsh and any other zsh components that require installation
+
+## TODOs:
+
 1. AWS credentials (i.e. $HOME/.aws/) in GDrive
 2. YouCompleteMe will still need to be manually compiled
 3. Tern is used for JS completion. But after installing Tern's Vundle plugin, make sure to run `npm install` in `.vim/bundle/tern_for_vim/` directory
@@ -8,10 +33,12 @@ Leftovers:
 6. Vim plugins install
 
 Applications not installed by brew cask:
+
 1. Desktop Cleaner
 2. Xcode
 3. WeChat
 
+---
 The original README:
 
 # holman does dotfiles

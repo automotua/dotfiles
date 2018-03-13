@@ -1,7 +1,5 @@
-{
-  "plugins": {
-    "node": {},
-    "modules": {},
-    "es_modules": {}
-  }
+module.exports = {
+    excludes: [
+        'react-components/**/test/**'
+    ]
 }

@@ -389,6 +389,15 @@ set number relativenumber
 " change hotkey to avoid conflict
 let vim_markdown_preview_hotkey = '<C-M>'
 
+" preview markdown on buffer write
+let vim_markdown_preview_toggle = 2
+
+" remove the markdown html file after opening it
+let vim_markdown_preview_temp_file=1
+
+" use Google Chrome because it's fast
+let vim_markdown_preview_browser='Google Chrome'
+
 """""""""""""""""""""""""
 " itchyny/lightline.vim "
 """""""""""""""""""""""""
