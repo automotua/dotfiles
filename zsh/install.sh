@@ -13,10 +13,9 @@ then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
-# copy custom folder's plugins and themes
-rm -rf $HOME/.oh-my-zsh/custom/themes $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-cp -R $DOTFILES_ROOT/zsh/custom/themes $HOME/.oh-my-zsh/custom/themes
-cp -R $DOTFILES_ROOT/zsh/custom/plugins/zsh-syntax-highlighting $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+# symlinked custom folder
+rm -rf $HOME/custom
+ln -s $DOTFILES_ROOT/zsh/custom $HOME/.oh-my-zsh/custom
 
 #########################################################################
 # bullet-train zsh theme requirement: Patched fonts for Powerline users #
@@ -34,4 +33,3 @@ then
 fi
 
 exit 0
-

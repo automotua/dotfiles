@@ -1,5 +1,7 @@
 # My dotfiles, inspired by holman does dotfiles
 
+### (Caution: this will only guarantee working on personal Mac machine. It might not work on work machine or Linux machine)
+
 ## Quick start
 #### If you just got a new machine:
 
