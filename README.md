@@ -1,11 +1,27 @@
 # My dotfiles, inspired by holman does dotfiles
 
+## Quick start
+#### If you just got a new machine:
+
+1. Run **script/boostrap**
+2. Look at TODOs and install them
+
+#### If you have a new e.g. .importjs configuration file:
+
+1. Run **script/link**
+2. Make sure the binary this config file belongs to are in your `Brewfile`
+
+#### If you want to install a new software via Homebrew:
+
+1. Install the software as you normally will with `brew install`
+2. Rerun `brew bundle dump` to update the bundle file
+3. Commit and push
+
 ## Summary of components
 
 General scripts that can be run independently:
 
-- **bin/dot**: Script that'll install Homebrew itself and run all the install.sh
-  scripts in other folders
+- **bin/dot**: Script that'll install Homebrew itself and run `script/install`
 - **script/install**: Does 2 things:
   1. Install all Homebrew-managed programs / binaries listed in
   the `Brewfile` through command `brew bundle`
@@ -23,14 +39,13 @@ Internal scripts, generally shouldn't be run by itself:
   **homebrew/install.sh**: will install Homebrew itself, **zsh/install.sh**
 installs oh-my-zsh and any other zsh components that require installation
 
-## TODOs:
+## Leftovers:
 
-1. AWS credentials (i.e. $HOME/.aws/) in GDrive
+1. Symlink (or point the applicaiton to use) credential dotfiles stored in 
+**GDrive/credential-configs**
 2. YouCompleteMe will still need to be manually compiled
 3. Tern is used for JS completion. But after installing Tern's Vundle plugin, make sure to run `npm install` in `.vim/bundle/tern_for_vim/` directory
-4. iTerm2's preference in GDrive
-5. Alfred's preference in GDrive
-6. Vim plugins install
+4. Vim plugins install
 
 Applications not installed by brew cask:
 
