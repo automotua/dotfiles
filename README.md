@@ -13,6 +13,11 @@
 1. Run **script/link**
 2. Make sure the binary this config file belongs to are in your `Brewfile`
 
+#### If you want to modify an existing config file:
+
+1. Modify the file, e.g. .vimrc
+2. **REMEMBER TO COMMIT AND PUSH**
+
 #### If you want to install a new software via Homebrew:
 
 1. Install the software as you normally will with `brew install`
