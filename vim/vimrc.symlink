@@ -419,6 +419,13 @@ let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
 
+"""""""""""""""""""""""
+" scrooloose/nerdtree "
+"""""""""""""""""""""""
+" hide the 'Press ? for help'
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
 """"""""""""""""""""""""
 " Has to be at the end "
 """"""""""""""""""""""""
