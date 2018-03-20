@@ -47,6 +47,7 @@ Plugin 'galooshi/vim-import-js'
 Plugin 'jamshedvesuna/vim-markdown-preview'
 Plugin 'itchyny/lightline.vim'
 Plugin 'mgee/lightline-bufferline'
+Plugin 'ntpeters/vim-better-whitespace'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -72,15 +73,6 @@ set tabstop=2
 
 " Set softtabstop to 2
 set softtabstop=2
-
-" Remove trailing whitespace
-fun! <SID>StripTrailingWhitespaces()
-  let l = line(".")
-  let c = col(".")
-  %s/\s\+$//e
-  call cursor(l, c)
-endfun
-autocmd FileType c,cpp,java,php,ruby,python,vim,js autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " Show line number
 set nu
@@ -214,6 +206,26 @@ nmap ? /\<\><Left><Left>
 
 " Close all other windows, leaving only current window open
 nmap <leader>o :only<cr>
+
+" Triger `autoread` when files changes on disk
+" https://unix.stackexchange.com/a/383044
+" Set autoread when file is changed outside of Vim
+set autoread
+
+" Set CursorHold detection time to be 2s
+set updatetime=2000
+
+augroup AutoTriggerAutoread
+  autocmd!
+  " Trigger autoread when the following events happen
+  autocmd BufEnter,CursorHold,CursorHoldI *
+        \ if mode() != 'c' | checktime | endif
+  " Give a warning message
+  autocmd FileChangedShellPost *
+        \ echohl WarningMsg
+        \ | echo "File changed on disk. Buffer reloaded."
+        \ | echohl None
+augroup END
 
 """""""""""""""""""
 " dyng/ctrlsf.vim "
@@ -425,6 +437,18 @@ let g:lightline.component_type   = {'buffers': 'tabsel'}
 " hide the 'Press ? for help'
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+
+""""""""""""""""""""""""""""""""""
+" ntpeters/vim-better-whitespace "
+""""""""""""""""""""""""""""""""""
+" disable highlighting
+let g:better_whitespace_enabled = 1
+
+" remove trailing whitespaces for following filetypes:
+augroup StripWhitesapce
+  autocmd!
+  autocmd FileType c,cpp,java,php,ruby,python,vim,javascript,jsx,html EnableStripWhitespaceOnSave
+augroup END
 
 """"""""""""""""""""""""
 " Has to be at the end "
