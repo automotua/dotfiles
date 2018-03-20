@@ -6,7 +6,7 @@
 #### If you just got a new machine:
 
 1. Run **script/boostrap**
-2. Look at TODOs and install them
+2. Look at **Leftovers** and install them
 
 #### If you have a new e.g. .importjs configuration file:
 

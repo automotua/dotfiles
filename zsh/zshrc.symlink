@@ -111,6 +111,9 @@ alias vd="deactivate"
 # alias to copy directory recursively
 alias cpd="cp -R "
 
+# alias to quick access the draft file
+alias draft="vim $HOME/code/playground/draft"
+
 ########
 # misc #
 ########
