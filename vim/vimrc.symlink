@@ -208,7 +208,13 @@ nmap ? /\<\><Left><Left>
 nmap <leader>o :only<cr>
 
 " Triger `autoread` when files changes on disk
-" https://unix.stackexchange.com/a/383044
+" NB: this setup will still require some manual work to trigger.
+"     You need to either
+"     1) move your cursor AND then wait for updatetime, or
+"     2) switch buffer and switch back
+"     For file changes due to `git pull`, 2) is probably better
+" See https://unix.stackexchange.com/a/383044
+
 " Set autoread when file is changed outside of Vim
 set autoread
 
