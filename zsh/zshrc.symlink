@@ -112,7 +112,7 @@ alias vd="deactivate"
 alias cpd="cp -R "
 
 # alias to quick access the draft file
-alias draft="vim $HOME/code/playground/draft"
+alias dr="vim $HOME/code/playground/draft"
 
 ########
 # misc #
