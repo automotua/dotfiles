@@ -114,6 +114,9 @@ alias cpd="cp -R "
 # alias to quick access the draft file
 alias dr="vim $HOME/code/playground/draft"
 
+# alias for git clone
+alias gicl="git clone"
+
 ########
 # misc #
 ########
