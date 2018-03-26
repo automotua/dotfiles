@@ -14,7 +14,7 @@ then
 fi
 
 # symlinked custom folder
-rm -rf $HOME/custom
+rm -rf $HOME/.oh-my-zsh/custom
 ln -s $DOTFILES_ROOT/zsh/custom $HOME/.oh-my-zsh/custom
 
 #########################################################################
