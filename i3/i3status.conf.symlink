@@ -1,0 +1,37 @@
+general {
+  colors = true
+  color_good = "#859900"
+  color_bad = "#dc322f"
+  color_degraded = "#cb4b16"
+  output_format = "i3bar"
+  interval = 2
+}
+
+order += "cpu_usage 0"
+order += "cpu_temperature 0"
+order += "volume master"
+order += "tztime local"
+
+load {
+  format = "%1min"
+}
+
+cpu_usage {
+  format = "CPU usage: %usage "
+}
+
+cpu_temperature 0 {
+  format = " %degrees°C "
+}
+
+volume master {
+  format = " 🔊 %volume "
+  device = "default"
+  mixer = "Master"
+  mixer_idx = 0
+}
+
+tztime local {
+  format = " %h %d, %Y  %I:%M %p "
+}
+
