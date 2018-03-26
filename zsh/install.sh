@@ -6,17 +6,6 @@
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
 
-if ! [ -e $HOME/.oh-my-zsh ]
-then
-  echo "Installing oh-my-zsh."
-  cd $HOME
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-fi
-
-# symlinked custom folder
-rm -rf $HOME/.oh-my-zsh/custom
-ln -s $DOTFILES_ROOT/zsh/custom $HOME/.oh-my-zsh/custom
-
 #########################################################################
 # bullet-train zsh theme requirement: Patched fonts for Powerline users #
 #########################################################################
@@ -31,5 +20,16 @@ then
   cd ..
   rm -rf fonts
 fi
+
+if ! [ -e $HOME/.oh-my-zsh ]
+then
+  echo "Installing oh-my-zsh."
+  cd $HOME
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+# symlinked custom folder
+rm -rf $HOME/.oh-my-zsh/custom
+ln -s $DOTFILES_ROOT/zsh/custom $HOME/.oh-my-zsh/custom
 
 exit 0
