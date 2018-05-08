@@ -33,7 +33,7 @@ bindsym $mod+q kill
 # start rofi (a program launcher)
 bindsym $mod+g exec --no-startup-id "rofi -show window"
 bindsym $mod+d exec --no-startup-id "rofi -show run"
-bindsym $mod+b exec --no-startup-id "rofi -show Workspace"
+bindsym $mod+w exec --no-startup-id "rofi -show Workspace"
 
 # change focus
 bindsym $mod+h focus left
@@ -42,8 +42,8 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # left & right arrow keys are used for workspace switching
-bindsym $mod+Left workspace prev
-bindsym $mod+Right workspace next
+bindsym $mod+a workspace prev
+bindsym $mod+f workspace next
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 
@@ -60,13 +60,13 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+v split h
+bindsym $mod+Shift+v split h
 
 # split in vertical orientation
-bindsym $mod+semicolon split v
+bindsym $mod+Shift+semicolon split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
+bindsym $mod+Shift+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -89,19 +89,34 @@ bindsym $mod+c focus child
 exec --no-startup-id i3-msg 'rename workspace 1 to "1: Todo"'
 exec --no-startup-id i3-msg 'rename workspace 2 to "2: Browser"'
 exec --no-startup-id i3-msg 'rename workspace 3 to "3: Code"'
-exec --no-startup-id i3-msg 'rename workspace 4 to "4: Terminal"'
+exec --no-startup-id i3-msg 'rename workspace 4 to "4: Preview"'
+exec --no-startup-id i3-msg 'rename workspace 5 to "5: Terminal"'
 
 # switch to workspace
 bindsym $mod+1 workspace number "1: Todo"
+
 bindsym $mod+2 workspace number "2: Browser"
+bindsym $mod+b workspace number "2: Browser"
+
 bindsym $mod+3 workspace number "3: Code"
-bindsym $mod+4 workspace number "4: Terminal"
-bindsym $mod+5 workspace number 5
+bindsym $mod+o workspace number "3: Code"
+
+bindsym $mod+4 workspace number "4: Preview"
+
+bindsym $mod+5 workspace number "5: Terminal"
+bindsym $mod+semicolon workspace number "5: Terminal"
+
 bindsym $mod+6 workspace number 6
 bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
+
+# workspace back and forth
+bindsym $mod+Tab workspace back_and_forth
+
+# rename workspaces on the fly by pressing mod+n
+bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'Rename workspace (remember to type number): '
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number 1
@@ -195,3 +210,12 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 # Add gLinux Status Indicator to the i3 status bar
 exec --no-startup-id /usr/share/goobuntu-indicator/goobuntu_indicator.py
 
+# Quasi Fibonacci dynamic tiling, i.e. automatic layout like this:
+# ------------
+# |      | B |
+# |  A   |---|
+# |      | C |
+# ------------
+default_orientation vertical # start in opposite orientation from your monitor
+for_window [class=".*"] split toggle # toggles split at each new window
+bindsym $mod+shift+q split toggle kill #kill command resets the split

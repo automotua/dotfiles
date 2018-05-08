@@ -25,7 +25,8 @@ cpu_temperature 0 {
 }
 
 volume master {
-  format = " 🔊 %volume "
+
+  format = " ♬  %volume "
   device = "default"
   mixer = "Master"
   mixer_idx = 0
