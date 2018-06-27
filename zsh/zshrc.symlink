@@ -141,4 +141,30 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 #export http_proxy=http://127.0.0.1:1087
 #export https_proxy=http://127.0.0.1:1087
 
+####################
+# TODO from gLinux #
+####################
+## clipper. Usage: echo "xxx" | clip; or: clip xxx.txt
+#alias clip="xclip -sel clip "
+
+## check linux distro version
+#alias version="lsb_release -a "
+
+## alias la to be: 
+## ls -a (all, including . and ..) 
+##    -l (long listing) 
+##    -h (human readble) 
+#alias la="ls -alh"
+
+#######
+## i3 #
+#######
+## new terminal with current directory
+## Commands to be executed before the prompt is displayed
+## Save current working dir
+#PROMPT_COMMAND='pwd > "${XDG_RUNTIME_DIR}/.cwd"'
+
+## Change to saved working dir
+#[[ -f "${XDG_RUNTIME_DIR}/.cwd" ]] && cd "$(< ${XDG_RUNTIME_DIR}/.cwd)"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
