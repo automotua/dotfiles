@@ -136,6 +136,9 @@ export TERM="xterm-256color"
 # set JAVA_HOME
 export JAVA_HOME=$(/usr/libexec/java_home)
 
+# add $HOME/code/bin into PATH
+export PATH="$HOME/code/bin:$PATH"
+
 # ShadowSocks, uncomment them in China only
 # use privoxy to convert ShadowSocks socks5 protocol to http to be used in terminal
 #export http_proxy=http://127.0.0.1:1087
