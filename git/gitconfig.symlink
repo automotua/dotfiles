@@ -71,3 +71,5 @@
 	proxy = socks5://127.0.0.1:1086 ;(China only)
 [https "https://github.com"]
 	proxy = socks5://127.0.0.1:1086 ;(China only)
+[credential]
+	helper = osxkeychain
