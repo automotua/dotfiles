@@ -142,12 +142,16 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # add $HOME/code/bin into PATH
 export PATH="$HOME/code/bin:$PATH"
 
+# add npm binaries into PATH
+# TODO use 'npm get prefix' to get the prefix path before bin
+export PATH="/usr/local/Cellar/node/10.6.0/bin:$PATH"
+
 # (China only) ShadowSocks, uncomment them in China only
 # use privoxy to convert ShadowSocks socks5 protocol to http to be used in terminal
-export http_proxy=http://127.0.0.1:1087
-export https_proxy=http://127.0.0.1:1087
-# this line seems necessary for homebrew
-#export ALL_PROXY=socks5://127.0.0.1:1086
+#export http_proxy=http://127.0.0.1:1087
+#export HTTP_PROXY=http://127.0.0.1:1087
+#export https_proxy=http://127.0.0.1:1087
+#export HTTPS_PROXY=http://127.0.0.1:1087
 
 ####################
 # TODO from gLinux #
