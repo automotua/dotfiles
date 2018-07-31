@@ -146,12 +146,19 @@ export PATH="$HOME/code/bin:$PATH"
 # TODO use 'npm get prefix' to get the prefix path before bin
 export PATH="/usr/local/Cellar/node/10.6.0/bin:$PATH"
 
+##############
+# China only #
+##############
 # (China only) ShadowSocks, uncomment them in China only
 # use privoxy to convert ShadowSocks socks5 protocol to http to be used in terminal
 #export http_proxy=http://127.0.0.1:1087
 #export HTTP_PROXY=http://127.0.0.1:1087
 #export https_proxy=http://127.0.0.1:1087
 #export HTTPS_PROXY=http://127.0.0.1:1087
+
+# replace npm with cnpm, which uses taobao's npm registry
+# See https://cnpmjs.org/
+alias npm=cnpm
 
 ####################
 # TODO from gLinux #
