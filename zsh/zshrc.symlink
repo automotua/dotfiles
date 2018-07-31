@@ -143,8 +143,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH="$HOME/code/bin:$PATH"
 
 # add npm binaries into PATH
-# TODO use 'npm get prefix' to get the prefix path before bin
-export PATH="/usr/local/Cellar/node/10.6.0/bin:$PATH"
+export PATH="$(npm get prefix)/bin:$PATH"
 
 ##############
 # China only #
