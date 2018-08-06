@@ -150,8 +150,8 @@ noremap  <buffer> <silent> j gj
 noremap  <buffer> <silent> 0 g0
 noremap  <buffer> <silent> $ g$
 
-" Simple folding based on syntax file, no time to learn all the tricks
-set foldmethod=syntax
+" Simple folding based on indent, syntax fold method has all the sluggish
+set foldmethod=indent
 
 " open most folds by default
 set foldlevelstart=10
