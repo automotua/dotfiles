@@ -36,7 +36,7 @@ Plugin 'ervandew/supertab'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'burntsushi/ripgrep'
-Plugin 'automotua/vim-buffergator'
+Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'dyng/ctrlsf.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
@@ -206,6 +206,9 @@ nmap ? /\<\><Left><Left>
 
 " Close all other windows, leaving only current window open
 nmap <leader>o :only<cr>
+
+" Close all buffers except for the current one
+nmap <leader>oo :%bd <BAR> e # <BAR> bd #<cr>
 
 " Triger `autoread` when files changes on disk
 " NB: this setup will still require some manual work to trigger.
