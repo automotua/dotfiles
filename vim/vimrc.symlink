@@ -22,14 +22,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'chazy/cscope_maps'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
 Plugin 'mattn/emmet-vim'
 Plugin 'Valloric/MatchTagAlways'
-Plugin 'DoxygenToolkit.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'ervandew/supertab'
@@ -48,6 +43,14 @@ Plugin 'jamshedvesuna/vim-markdown-preview'
 Plugin 'itchyny/lightline.vim'
 Plugin 'mgee/lightline-bufferline'
 Plugin 'ntpeters/vim-better-whitespace'
+
+" plugins that are not actively used for now are disabled ATM to boost Vim speed
+" and will be re-enabled if needed
+"Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'chazy/cscope_maps'
+"Plugin 'xolox/vim-misc'
+"Plugin 'xolox/vim-easytags'
+"Plugin 'DoxygenToolkit.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -328,18 +331,18 @@ nmap <leader>q :bp <BAR> bd #<cr>
 " Open/close NERDTree Tabs with <leader>t
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 
-"""""""""""""""""""""""""""""""
-" xolox/vim-easytags settings "
-"""""""""""""""""""""""""""""""
-set cpo+=d
-" Where to look for tags files
-set tags=./.git/tags;,~/.vimtags
-" Sensible defaults
-let g:easytags_events = ['BufReadPost', 'BufWritePost']
-let g:easytags_async = 1
-let g:easytags_dynamic_files = 2
-let g:easytags_resolve_links = 1
-let g:easytags_suppress_ctags_warning = 1
+""""""""""""""""""""""""""""""""
+"" xolox/vim-easytags settings "
+""""""""""""""""""""""""""""""""
+"set cpo+=d
+"" Where to look for tags files
+"set tags=./.git/tags;,~/.vimtags
+"" Sensible defaults
+"let g:easytags_events = ['BufReadPost', 'BufWritePost']
+"let g:easytags_async = 1
+"let g:easytags_dynamic_files = 2
+"let g:easytags_resolve_links = 1
+"let g:easytags_suppress_ctags_warning = 1
 
 """"""""""""""""""""""""""""
 " You-Complete-Me settings "
