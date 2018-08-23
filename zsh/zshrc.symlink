@@ -143,7 +143,8 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH="$HOME/code/bin:$PATH"
 
 # add npm binaries into PATH
-export PATH="$(npm get prefix)/bin:$PATH"
+# TODO npm get prefix is just /usr/local for now. this doesn't seem right
+#export PATH="$(npm get prefix)/bin:$PATH"
 
 ##############
 # China only #
@@ -154,10 +155,6 @@ export PATH="$(npm get prefix)/bin:$PATH"
 #export HTTP_PROXY=http://127.0.0.1:1087
 #export https_proxy=http://127.0.0.1:1087
 #export HTTPS_PROXY=http://127.0.0.1:1087
-
-# replace npm with cnpm, which uses taobao's npm registry
-# See https://cnpmjs.org/
-alias npm=cnpm
 
 ####################
 # TODO from gLinux #
