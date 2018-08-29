@@ -59,6 +59,15 @@ filetype plugin indent on    " required
 """"""""""""
 " settings "
 """"""""""""
+" skip MacVim's default colorscheme, use the one in this file
+let macvim_skip_colorscheme=1
+
+" color scheme
+if has('gui_running')
+  colorscheme solarized
+endif
+set background=dark
+
 " solves backspace not working problem
 set backspace=2
 
@@ -94,9 +103,6 @@ command! -bar -bang Q quit<bang>
 
 " Make :W also mean write
 command! -bar -bang W write<bang>
-
-" color scheme
-set background=dark
 
 " cursor line
 set cursorline
@@ -180,9 +186,9 @@ nnoremap * *N
 " Don't open preview window for auto-complete
 set completeopt-=preview
 
-" Change dropdown menu color
+" Change dropdown menu color when it's terminal
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
-highlight PmenuSel ctermfg=0 ctermbg=7 guifg=#000000 guibg=#000007
+highlight PmenuSel ctermfg=0 ctermbg=7 guifg=#000000 guibg=#ffffff
 
 " When Pmenu is shown, remap Ctrl-N and Ctrl-P to arrow keys to prevent flashing
 inoremap <expr> <C-N> pumvisible() ? "<Down>" : "<C-N>"
@@ -442,6 +448,11 @@ let g:lightline                  = {}
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
+
+" disable MacVim's tab, use bufferline instead
+if has('gui_running')
+  set guioptions-=e
+endif
 
 """""""""""""""""""""""
 " scrooloose/nerdtree "
