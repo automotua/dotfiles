@@ -59,8 +59,20 @@ filetype plugin indent on    " required
 """"""""""""
 " settings "
 """"""""""""
-" skip MacVim's default colorscheme, use the one in this file
+" (MacVim only) skip MacVim's default colorscheme, use the one in this file
 let macvim_skip_colorscheme=1
+
+" (MacVim only) fix MacVim's crash issue due to python version
+" see https://github.com/macvim-dev/macvim/issues/667
+"if has('python3')
+    "command! -nargs=1 Py py3 <args>
+    "set pythonthreedll=/usr/local/Frameworks/Python.framework/Versions/3.6/Python
+    "set pythonthreehome=/usr/local/Frameworks/Python.framework/Versions/3.6
+"else
+    "command! -nargs=1 Py py <args>
+    "set pythondll=/usr/local/Frameworks/Python.framework/Versions/2.7/Python
+    "set pythonhome=/usr/local/Frameworks/Python.framework/Versions/2.7
+"endif
 
 " color scheme
 if has('gui_running')
@@ -259,6 +271,7 @@ nnoremap <leader>ft :CtrlSFToggle<CR>
 vmap <leader>ff <Plug>CtrlSFVwordPath
 
 " Use rg as backend, see comparison: https://blog.burntsushi.net/ripgrep/
+" (MacVim only) TODO not working for MacVim
 let g:ctrlsf_ackprg = '/usr/local/bin/rg'
 
 " Don't close result window when some result file is opened
