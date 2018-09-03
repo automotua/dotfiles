@@ -1,4 +1,4 @@
 python=python2.7
 # China only
 # use taobao's npm registry. see here: https://cnodejs.org/topic/581d96d5bb9452c9052e7b58
-#registry='https://registry.npm.taobao.org'
+registry='https://registry.npm.taobao.org'

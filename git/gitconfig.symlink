@@ -67,10 +67,10 @@
 [user]
 	name = Adam Li
 	email = adam.junqiang.li@gmail.com
-;[http "https://github.com"]
-	;proxy = socks5://127.0.0.1:1086 ;(China only)
-;[https "https://github.com"]
-	;proxy = socks5://127.0.0.1:1086 ;(China only)
+[http "https://github.com"]
+	proxy = socks5://127.0.0.1:1086 ;(China only)
+[https "https://github.com"]
+	proxy = socks5://127.0.0.1:1086 ;(China only)
 [credential]
 	helper = osxkeychain
 [url "https://github.com/"]
