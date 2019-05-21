@@ -60,6 +60,12 @@ Applications not installed by brew cask:
 2. Xcode
 3. WeChat
 
+## Windows Linux Subsystem:
+
+For WLS terminal color and font settings, see:
+
+https://imxieyi.com/2017/10/14/%E9%92%88%E5%AF%B9win10%E4%B8%8A%E7%9A%84linux%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%BC%98%E5%8C%96cmd%E7%9A%84%E9%85%8D%E8%89%B2%E5%8F%8A%E5%AD%97%E4%BD%93/
+
 ---
 The original README:
 
